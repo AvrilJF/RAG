@@ -49,6 +49,6 @@ python api_server.py
   "question": "亚马逊FBA物流费用计算规则是什么？"
 }
 ```
-![alt text](image.png)
-![alt text](image-1.png)
-![alt text](image-2.png)
+![alt text](./assets/image.png)
+![alt text](./assets/image-1.png)
+![alt text](./assets/image-2.png)
