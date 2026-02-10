@@ -1,5 +1,5 @@
 # 跨境电商 RAG 智能问答助手
-基于 RAG（检索增强生成）实现的跨境电商领域智能问答系统，支持平台规则、物流政策、售后规范等知识库问答，提供 FastAPI 接口服务化部署。
+基于 RAG（检索增强生成）实现的跨境电商领域智能问答系统，支持平台规则、物流政策、售后规范等知识库问答，提供 FastAPI 接口服务化部署。可扩展支持多模型、多文档、鉴权、限流、监控等生产特性
 
 ## 技术栈
 - 后端：Python + FastAPI
@@ -49,4 +49,6 @@ python api_server.py
   "question": "亚马逊FBA物流费用计算规则是什么？"
 }
 ```
-
+![alt text](image.png)
+![alt text](image-1.png)
+![alt text](image-2.png)

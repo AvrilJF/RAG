@@ -14,7 +14,7 @@ from langchain_community.document_loaders import PyPDFLoader
 # 从langchain文本处理库导入递归字符分块器，实现中文文本的智能语义分块
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 # 从自定义工具类utils.py导入所有初始化函数和日志实例，复用已封装的组件
-from utils import init_embedding, init_llm, init_faiss, logger
+from src.utils import init_embedding, init_llm, init_faiss, logger
 
 # 项目启动时立即初始化所有核心组件，仅执行1次，供后续所有业务逻辑调用
 embedding = init_embedding()  # 初始化嵌入模型，用于文本/问题的向量化转换
