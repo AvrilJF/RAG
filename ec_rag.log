@@ -1,0 +1,82 @@
+2026-02-10 16:56:04,625 - utils - INFO - 嵌入模型初始化成功
+2026-02-10 16:56:04,679 - utils - INFO - 大模型初始化成功
+2026-02-10 16:56:04,966 - httpx - INFO - HTTP Request: POST https://open.bigmodel.cn/api/paas/v4/embeddings "HTTP/1.1 200 OK"
+2026-02-10 16:56:04,977 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2026-02-10 16:56:05,362 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2026-02-10 16:56:05,370 - utils - INFO - FAISS 首次初始化成功
+2026-02-10 16:58:18,451 - utils - INFO - 嵌入模型初始化成功
+2026-02-10 16:58:18,478 - utils - INFO - 大模型初始化成功
+2026-02-10 16:58:18,481 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2026-02-10 16:58:18,497 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2026-02-10 16:58:18,507 - utils - INFO - FAISS 从本地加载成功
+2026-02-10 16:58:42,299 - utils - INFO - 嵌入模型初始化成功
+2026-02-10 16:58:42,329 - utils - INFO - 大模型初始化成功
+2026-02-10 16:58:42,333 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2026-02-10 16:58:42,350 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2026-02-10 16:58:42,357 - utils - INFO - FAISS 从本地加载成功
+2026-02-10 16:58:42,359 - utils - ERROR - 加载C语言分块库失败：Could not find module 'D:\LxrFiles\自学\code\跨境电商 RAG 智能问答助手V2\text_splitter.dll' (or one of its dependencies). Try using the full path with constructor syntax.，降级使用Python分块器
+2026-02-10 16:58:42,360 - utils - ERROR - 知识库文件不存在：amazon_rules2.pdf，跳过该文件
+2026-02-10 16:58:42,360 - utils - ERROR - 未加载到任何有效PDF知识库内容
+2026-02-10 16:59:41,047 - utils - INFO - 嵌入模型初始化成功
+2026-02-10 16:59:41,075 - utils - INFO - 大模型初始化成功
+2026-02-10 16:59:41,078 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2026-02-10 16:59:41,092 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2026-02-10 16:59:41,100 - utils - INFO - FAISS 从本地加载成功
+2026-02-10 16:59:41,101 - utils - ERROR - 加载C语言分块库失败：Could not find module 'D:\LxrFiles\自学\code\跨境电商 RAG 智能问答助手V2\text_splitter.dll' (or one of its dependencies). Try using the full path with constructor syntax.，降级使用Python分块器
+2026-02-10 16:59:41,543 - utils - INFO - 加载PDF文档data/raw/amazon_rules2.pdf，共5页
+2026-02-10 16:59:41,544 - utils - INFO - PDFdata/raw/amazon_rules2.pdf分块完成，共10个块
+2026-02-10 16:59:41,941 - httpx - INFO - HTTP Request: POST https://open.bigmodel.cn/api/paas/v4/embeddings "HTTP/1.1 200 OK"
+2026-02-10 16:59:42,076 - utils - INFO - 已入库10/10条文本块
+2026-02-10 16:59:42,078 - utils - INFO - 所有PDF知识库入库完成，总文本块数：10
+2026-02-10 16:59:42,182 - httpx - INFO - HTTP Request: POST https://open.bigmodel.cn/api/paas/v4/embeddings "HTTP/1.1 200 OK"
+2026-02-10 16:59:42,325 - httpx - INFO - HTTP Request: POST https://open.bigmodel.cn/api/paas/v4/embeddings "HTTP/1.1 200 OK"
+2026-02-10 16:59:42,448 - httpx - INFO - HTTP Request: POST https://open.bigmodel.cn/api/paas/v4/embeddings "HTTP/1.1 200 OK"
+2026-02-10 17:03:41,388 - utils - INFO - 嵌入模型初始化成功
+2026-02-10 17:03:41,418 - utils - INFO - 大模型初始化成功
+2026-02-10 17:03:41,421 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2026-02-10 17:03:41,441 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2026-02-10 17:03:41,449 - utils - INFO - FAISS 从本地加载成功
+2026-02-10 17:03:41,897 - utils - INFO - 加载PDF文档data/raw/amazon_rules2.pdf，共5页
+2026-02-10 17:05:51,225 - utils - INFO - 嵌入模型初始化成功
+2026-02-10 17:05:51,253 - utils - INFO - 大模型初始化成功
+2026-02-10 17:05:51,256 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2026-02-10 17:05:51,273 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2026-02-10 17:05:51,281 - utils - INFO - FAISS 从本地加载成功
+2026-02-10 17:05:51,731 - utils - INFO - 加载PDF文档data/raw/amazon_rules2.pdf，共5页
+2026-02-10 17:05:51,739 - utils - INFO - C语言分块完成，总块数：25
+2026-02-10 17:05:51,739 - utils - INFO - PDFdata/raw/amazon_rules2.pdf分块完成，共25个块
+2026-02-10 17:05:52,159 - httpx - INFO - HTTP Request: POST https://open.bigmodel.cn/api/paas/v4/embeddings "HTTP/1.1 200 OK"
+2026-02-10 17:05:52,426 - utils - INFO - 已入库25/25条文本块
+2026-02-10 17:05:52,428 - utils - INFO - 所有PDF知识库入库完成，总文本块数：25
+2026-02-10 17:05:52,535 - httpx - INFO - HTTP Request: POST https://open.bigmodel.cn/api/paas/v4/embeddings "HTTP/1.1 200 OK"
+2026-02-10 17:05:52,664 - httpx - INFO - HTTP Request: POST https://open.bigmodel.cn/api/paas/v4/embeddings "HTTP/1.1 200 OK"
+2026-02-10 17:05:52,786 - httpx - INFO - HTTP Request: POST https://open.bigmodel.cn/api/paas/v4/embeddings "HTTP/1.1 200 OK"
+2026-02-10 17:05:52,906 - httpx - INFO - HTTP Request: POST https://open.bigmodel.cn/api/paas/v4/embeddings "HTTP/1.1 200 OK"
+2026-02-10 17:05:53,038 - httpx - INFO - HTTP Request: POST https://open.bigmodel.cn/api/paas/v4/embeddings "HTTP/1.1 200 OK"
+2026-02-10 17:05:53,167 - httpx - INFO - HTTP Request: POST https://open.bigmodel.cn/api/paas/v4/embeddings "HTTP/1.1 200 OK"
+2026-02-10 17:05:53,295 - httpx - INFO - HTTP Request: POST https://open.bigmodel.cn/api/paas/v4/embeddings "HTTP/1.1 200 OK"
+2026-02-10 17:05:53,421 - httpx - INFO - HTTP Request: POST https://open.bigmodel.cn/api/paas/v4/embeddings "HTTP/1.1 200 OK"
+2026-02-10 17:05:53,534 - httpx - INFO - HTTP Request: POST https://open.bigmodel.cn/api/paas/v4/embeddings "HTTP/1.1 200 OK"
+2026-02-10 17:05:53,650 - httpx - INFO - HTTP Request: POST https://open.bigmodel.cn/api/paas/v4/embeddings "HTTP/1.1 200 OK"
+2026-02-10 17:05:53,758 - httpx - INFO - HTTP Request: POST https://open.bigmodel.cn/api/paas/v4/embeddings "HTTP/1.1 200 OK"
+2026-02-10 17:05:53,893 - httpx - INFO - HTTP Request: POST https://open.bigmodel.cn/api/paas/v4/embeddings "HTTP/1.1 200 OK"
+2026-02-10 17:05:54,015 - httpx - INFO - HTTP Request: POST https://open.bigmodel.cn/api/paas/v4/embeddings "HTTP/1.1 200 OK"
+2026-02-10 17:05:54,129 - httpx - INFO - HTTP Request: POST https://open.bigmodel.cn/api/paas/v4/embeddings "HTTP/1.1 200 OK"
+2026-02-10 17:05:54,252 - httpx - INFO - HTTP Request: POST https://open.bigmodel.cn/api/paas/v4/embeddings "HTTP/1.1 200 OK"
+2026-02-10 17:05:54,367 - httpx - INFO - HTTP Request: POST https://open.bigmodel.cn/api/paas/v4/embeddings "HTTP/1.1 200 OK"
+2026-02-10 17:05:54,485 - httpx - INFO - HTTP Request: POST https://open.bigmodel.cn/api/paas/v4/embeddings "HTTP/1.1 200 OK"
+2026-02-10 17:05:54,618 - httpx - INFO - HTTP Request: POST https://open.bigmodel.cn/api/paas/v4/embeddings "HTTP/1.1 200 OK"
+2026-02-10 17:05:54,733 - httpx - INFO - HTTP Request: POST https://open.bigmodel.cn/api/paas/v4/embeddings "HTTP/1.1 200 OK"
+2026-02-10 17:05:54,852 - httpx - INFO - HTTP Request: POST https://open.bigmodel.cn/api/paas/v4/embeddings "HTTP/1.1 200 OK"
+2026-02-10 17:05:54,980 - httpx - INFO - HTTP Request: POST https://open.bigmodel.cn/api/paas/v4/embeddings "HTTP/1.1 200 OK"
+2026-02-10 17:05:55,107 - httpx - INFO - HTTP Request: POST https://open.bigmodel.cn/api/paas/v4/embeddings "HTTP/1.1 200 OK"
+2026-02-10 17:05:55,239 - httpx - INFO - HTTP Request: POST https://open.bigmodel.cn/api/paas/v4/embeddings "HTTP/1.1 200 OK"
+2026-02-10 17:06:03,608 - httpx - INFO - HTTP Request: POST https://open.bigmodel.cn/api/paas/v4/chat/completions "HTTP/1.1 200 OK"
+2026-02-10 17:06:03,609 - utils - INFO - 问答完成，用户问题：亚马逊FBA物流费用计算规则是什么？，回答：亚马逊FBA（Fulfillment by Amazon）物流费用计算规则如下：
+
+1. 费用基于货...
+2026-02-10 17:09:25,152 - utils - INFO - 嵌入模型初始化成功
+2026-02-10 17:09:25,184 - utils - INFO - 大模型初始化成功
+2026-02-10 17:09:25,187 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2026-02-10 17:09:25,230 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2026-02-10 17:09:25,237 - utils - INFO - FAISS 从本地加载成功

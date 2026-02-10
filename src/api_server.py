@@ -8,9 +8,9 @@ from pydantic import BaseModel
 # 导入uvicorn服务器，作为FastAPI的运行容器，用于启动Web服务并监听网络请求
 import uvicorn
 # 从自定义RAG核心层导入业务函数，复用已实现的知识库加载和智能问答逻辑
-from src.rag_engine import rag_qa, load_knowledge
+from rag_engine import rag_qa, load_knowledge
 # 从自定义工具类导入日志实例，用于记录接口运行的关键日志（成功/失败）
-from src.utils import logger
+from utils import logger
 
 # 创建FastAPI应用 实例，作为整个API服务的核心入口
 # 配置应用名称和版本，会自动显示在Swagger文档中，提升接口可读性
