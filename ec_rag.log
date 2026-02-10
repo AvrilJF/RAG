@@ -1,0 +1,224 @@
+2026-02-04 18:01:31,623 - utils - ERROR - 嵌入模型初始化失败：1 validation error for ZhipuAIEmbeddings
+  Value error, Did not find api_key, please add an environment variable `ZHIPUAI_API_KEY` which contains it, or pass `api_key` as a named parameter. [type=value_error, input_value={'api_key': None, 'model': 'embedding-2'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/value_error
+2026-02-04 18:04:49,920 - utils - ERROR - 嵌入模型初始化失败：1 validation error for ZhipuAIEmbeddings
+  Value error, Did not find api_key, please add an environment variable `ZHIPUAI_API_KEY` which contains it, or pass `api_key` as a named parameter. [type=value_error, input_value={'api_key': None, 'model': 'embedding-2'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.12/v/value_error
+2026-02-04 18:05:52,600 - utils - ERROR - 嵌入模型初始化失败：Could not import zhipuai python package.Please install it with `pip install zhipuai`.
+2026-02-04 18:06:12,062 - utils - ERROR - 嵌入模型初始化失败：Could not import zhipuai python package.Please install it with `pip install zhipuai`.
+2026-02-05 11:10:46,966 - utils - ERROR - 嵌入模型初始化失败：Could not import zhipuai python package.Please install it with `pip install zhipuai`.
+2026-02-05 11:11:25,772 - utils - ERROR - 嵌入模型初始化失败：Could not import zhipuai python package.Please install it with `pip install zhipuai`.
+2026-02-05 12:00:25,677 - utils - ERROR - 嵌入模型初始化失败：Could not import zhipuai python package.Please install it with `pip install zhipuai`.
+2026-02-05 12:00:54,677 - utils - ERROR - 嵌入模型初始化失败：Could not import zhipuai python package.Please install it with `pip install zhipuai`.
+2026-02-05 12:03:06,032 - utils - ERROR - 嵌入模型初始化失败：Could not import zhipuai python package.Please install it with `pip install zhipuai`.
+2026-02-05 14:19:51,835 - utils - ERROR - 嵌入模型初始化失败：Could not import zhipuai python package.Please install it with `pip install zhipuai`.
+2026-02-05 14:20:39,030 - utils - ERROR - 嵌入模型初始化失败：Could not import zhipuai python package.Please install it with `pip install zhipuai`.
+2026-02-05 14:23:06,851 - utils - ERROR - 嵌入模型初始化失败：Could not import zhipuai python package.Please install it with `pip install zhipuai`.
+2026-02-05 14:41:15,722 - utils - INFO - 嵌入模型初始化成功
+2026-02-05 14:41:15,722 - utils - INFO - 大模型初始化成功
+2026-02-05 14:41:27,980 - langchain_community.vectorstores.milvus - ERROR - Failed to create new connection using: d9cce80962d641649e23e4bc7b650e08
+2026-02-05 14:41:27,981 - utils - ERROR - Milvus初始化失败：<MilvusException: (code=2, message=Fail connecting to server on localhost:19530, illegal connection params or server unavailable)>
+2026-02-05 15:02:29,638 - utils - INFO - 嵌入模型初始化成功
+2026-02-05 15:02:29,638 - utils - INFO - 大模型初始化成功
+2026-02-05 15:02:40,154 - langchain_community.vectorstores.milvus - ERROR - Failed to create new connection using: d0e1efbffd524252a2a69b43c435f494
+2026-02-05 15:02:40,155 - utils - ERROR - Milvus初始化失败：<MilvusException: (code=2, message=Fail connecting to server on localhost:19530, illegal connection params or server unavailable)>
+2026-02-05 15:14:51,636 - utils - INFO - 嵌入模型初始化成功
+2026-02-05 15:14:51,636 - utils - INFO - 大模型初始化成功
+2026-02-05 15:17:44,342 - utils - INFO - 嵌入模型初始化成功
+2026-02-05 15:17:44,342 - utils - INFO - 大模型初始化成功
+2026-02-05 15:20:28,337 - utils - INFO - 嵌入模型初始化成功
+2026-02-05 15:20:28,337 - utils - INFO - 大模型初始化成功
+2026-02-05 15:21:22,347 - utils - INFO - 嵌入模型初始化成功
+2026-02-05 15:21:22,347 - utils - INFO - 大模型初始化成功
+2026-02-05 15:24:10,129 - utils - INFO - 嵌入模型初始化成功
+2026-02-05 15:24:10,129 - utils - INFO - 大模型初始化成功
+2026-02-05 15:24:20,158 - utils - ERROR - Milvus Lite 初始化失败：<MilvusException: (code=2, message=Fail connecting to server on localhost:19530, illegal connection params or server unavailable)>
+Traceback (most recent call last):
+  File "D:\LxrFiles\自学\code\跨境电商 RAG 智能问答助手\utils.py", line 62, in init_milvus
+    connections.connect(
+  File "D:\LxrApps\Miniconda\envs\rag-ec\lib\site-packages\pymilvus\orm\connections.py", line 437, in connect
+    connect_milvus(**kwargs, user=user, password=password, token=token, db_name=db_name)
+  File "D:\LxrApps\Miniconda\envs\rag-ec\lib\site-packages\pymilvus\orm\connections.py", line 391, in connect_milvus
+    raise e from e
+  File "D:\LxrApps\Miniconda\envs\rag-ec\lib\site-packages\pymilvus\orm\connections.py", line 385, in connect_milvus
+    gh._wait_for_channel_ready(timeout=timeout)
+  File "D:\LxrApps\Miniconda\envs\rag-ec\lib\site-packages\pymilvus\client\grpc_handler.py", line 228, in _wait_for_channel_ready
+    raise MilvusException(
+pymilvus.exceptions.MilvusException: <MilvusException: (code=2, message=Fail connecting to server on localhost:19530, illegal connection params or server unavailable)>
+2026-02-05 15:32:33,426 - utils - INFO - 嵌入模型初始化成功
+2026-02-05 15:32:33,426 - utils - INFO - 大模型初始化成功
+2026-02-05 15:32:43,500 - utils - ERROR - Milvus初始化失败：<MilvusException: (code=2, message=Fail connecting to server on localhost:19530, illegal connection params or server unavailable)>
+Traceback (most recent call last):
+  File "D:\LxrFiles\自学\code\跨境电商 RAG 智能问答助手\utils.py", line 57, in init_milvus
+    connections.connect(
+  File "D:\LxrApps\Miniconda\envs\rag-ec\lib\site-packages\pymilvus\orm\connections.py", line 437, in connect
+    connect_milvus(**kwargs, user=user, password=password, token=token, db_name=db_name)
+  File "D:\LxrApps\Miniconda\envs\rag-ec\lib\site-packages\pymilvus\orm\connections.py", line 391, in connect_milvus
+    raise e from e
+  File "D:\LxrApps\Miniconda\envs\rag-ec\lib\site-packages\pymilvus\orm\connections.py", line 385, in connect_milvus
+    gh._wait_for_channel_ready(timeout=timeout)
+  File "D:\LxrApps\Miniconda\envs\rag-ec\lib\site-packages\pymilvus\client\grpc_handler.py", line 228, in _wait_for_channel_ready
+    raise MilvusException(
+pymilvus.exceptions.MilvusException: <MilvusException: (code=2, message=Fail connecting to server on localhost:19530, illegal connection params or server unavailable)>
+2026-02-05 17:14:34,490 - utils - INFO - 嵌入模型初始化成功
+2026-02-05 17:14:34,490 - utils - INFO - 大模型初始化成功
+2026-02-05 17:14:45,159 - langchain_community.vectorstores.milvus - ERROR - Failed to create new connection using: bb1ac5a7d4a0437a9d10fee965f686cb
+2026-02-05 17:14:45,161 - utils - ERROR - Milvus初始化失败：<MilvusException: (code=2, message=Fail connecting to server on localhost:19530, illegal connection params or server unavailable)>
+2026-02-05 17:27:19,235 - utils - INFO - 嵌入模型初始化成功
+2026-02-05 17:27:19,269 - utils - INFO - 大模型初始化成功
+2026-02-05 17:27:19,269 - utils - ERROR - FAISS初始化失败：FAISS.__init__() missing 3 required positional arguments: 'index', 'docstore', and 'index_to_docstore_id'
+2026-02-05 17:30:34,940 - utils - INFO - 嵌入模型初始化成功
+2026-02-05 17:30:34,969 - utils - INFO - 大模型初始化成功
+2026-02-05 17:30:35,193 - httpx - INFO - HTTP Request: POST https://open.bigmodel.cn/api/paas/v4/embeddings "HTTP/1.1 200 OK"
+2026-02-05 17:30:35,201 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2026-02-05 17:30:35,626 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2026-02-05 17:30:35,637 - utils - INFO - FAISS 首次初始化成功
+2026-02-05 17:30:36,036 - utils - INFO - 加载PDF文档，共11页
+2026-02-05 17:30:36,042 - utils - INFO - 文档分块完成，共63个块
+2026-02-05 17:30:36,452 - httpx - INFO - HTTP Request: POST https://open.bigmodel.cn/api/paas/v4/embeddings "HTTP/1.1 200 OK"
+2026-02-05 17:30:36,959 - utils - INFO - 知识库入库并保存成功
+2026-02-05 17:30:37,275 - httpx - INFO - HTTP Request: POST https://open.bigmodel.cn/api/paas/v4/embeddings "HTTP/1.1 200 OK"
+2026-02-05 17:30:37,288 - utils - INFO - 检索到0条相关文档
+2026-02-05 17:31:47,368 - utils - INFO - 嵌入模型初始化成功
+2026-02-05 17:31:47,402 - utils - INFO - 大模型初始化成功
+2026-02-05 17:31:47,404 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2026-02-05 17:31:47,442 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2026-02-05 17:31:47,490 - utils - INFO - FAISS 从本地加载成功
+2026-02-05 18:07:27,520 - httpx - INFO - HTTP Request: POST https://open.bigmodel.cn/api/paas/v4/embeddings "HTTP/1.1 200 OK"
+2026-02-05 18:07:27,558 - utils - INFO - 检索到0条相关文档
+2026-02-05 18:34:25,593 - utils - INFO - 嵌入模型初始化成功
+2026-02-05 18:34:25,626 - utils - INFO - 大模型初始化成功
+2026-02-05 18:34:25,629 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2026-02-05 18:34:25,676 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2026-02-05 18:34:25,685 - utils - INFO - FAISS 从本地加载成功
+2026-02-05 18:37:22,534 - utils - INFO - 加载PDF文档amazon_rules.pdf，共11页
+2026-02-05 18:37:22,551 - utils - INFO - PDFamazon_rules.pdf分块完成，共63个块
+2026-02-05 18:37:23,688 - utils - INFO - 加载PDF文档amazon_rules2.pdf，共5页
+2026-02-05 18:37:23,692 - utils - INFO - PDFamazon_rules2.pdf分块完成，共10个块
+2026-02-05 18:37:23,858 - httpx - INFO - HTTP Request: POST https://open.bigmodel.cn/api/paas/v4/embeddings "HTTP/1.1 400 Bad Request"
+2026-02-05 18:37:23,859 - utils - ERROR - 加载知识库失败：Error code: 400, with error text {"error":{"code":"1214","message":"input数组最大不得超过64条"}}
+2026-02-05 18:39:45,373 - utils - INFO - 嵌入模型初始化成功
+2026-02-05 18:39:45,405 - utils - INFO - 大模型初始化成功
+2026-02-05 18:39:45,407 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2026-02-05 18:39:45,452 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2026-02-05 18:39:45,460 - utils - INFO - FAISS 从本地加载成功
+2026-02-05 18:40:34,240 - utils - INFO - 加载PDF文档amazon_rules.pdf，共11页
+2026-02-05 18:40:34,244 - utils - INFO - PDFamazon_rules.pdf分块完成，共63个块
+2026-02-05 18:40:35,199 - utils - INFO - 加载PDF文档amazon_rules2.pdf，共5页
+2026-02-05 18:40:35,202 - utils - INFO - PDFamazon_rules2.pdf分块完成，共10个块
+2026-02-05 18:40:35,806 - httpx - INFO - HTTP Request: POST https://open.bigmodel.cn/api/paas/v4/embeddings "HTTP/1.1 200 OK"
+2026-02-05 18:40:36,656 - utils - INFO - 已入库60/73条文本块
+2026-02-05 18:40:36,857 - httpx - INFO - HTTP Request: POST https://open.bigmodel.cn/api/paas/v4/embeddings "HTTP/1.1 200 OK"
+2026-02-05 18:40:37,093 - utils - INFO - 已入库73/73条文本块
+2026-02-05 18:40:37,111 - utils - INFO - 所有PDF知识库入库完成，总文本块数：73
+2026-02-05 18:42:12,319 - httpx - INFO - HTTP Request: POST https://open.bigmodel.cn/api/paas/v4/embeddings "HTTP/1.1 200 OK"
+2026-02-05 18:42:12,352 - utils - INFO - 检索到0条相关文档
+2026-02-05 18:42:56,873 - httpx - INFO - HTTP Request: POST https://open.bigmodel.cn/api/paas/v4/embeddings "HTTP/1.1 200 OK"
+2026-02-05 18:42:56,894 - utils - INFO - 检索到0条相关文档
+2026-02-05 18:43:04,144 - httpx - INFO - HTTP Request: POST https://open.bigmodel.cn/api/paas/v4/embeddings "HTTP/1.1 200 OK"
+2026-02-05 18:43:04,168 - utils - INFO - 检索到0条相关文档
+2026-02-09 17:24:42,075 - utils - INFO - 嵌入模型初始化成功
+2026-02-09 17:24:42,163 - utils - INFO - 大模型初始化成功
+2026-02-09 17:24:42,167 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2026-02-09 17:24:42,626 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2026-02-09 17:24:42,669 - utils - INFO - FAISS 从本地加载成功
+2026-02-09 17:25:51,327 - utils - INFO - 嵌入模型初始化成功
+2026-02-09 17:25:51,358 - utils - INFO - 大模型初始化成功
+2026-02-09 17:25:51,360 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2026-02-09 17:25:51,377 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2026-02-09 17:25:51,388 - utils - INFO - FAISS 从本地加载成功
+2026-02-09 17:25:51,866 - utils - INFO - 加载PDF文档amazon_rules2.pdf，共5页
+2026-02-09 17:25:51,868 - utils - INFO - PDFamazon_rules2.pdf分块完成，共10个块
+2026-02-09 17:25:52,300 - httpx - INFO - HTTP Request: POST https://open.bigmodel.cn/api/paas/v4/embeddings "HTTP/1.1 200 OK"
+2026-02-09 17:25:52,450 - utils - INFO - 已入库10/10条文本块
+2026-02-09 17:25:52,453 - utils - INFO - 所有PDF知识库入库完成，总文本块数：10
+2026-02-09 17:25:52,790 - httpx - INFO - HTTP Request: POST https://open.bigmodel.cn/api/paas/v4/embeddings "HTTP/1.1 200 OK"
+2026-02-09 17:25:52,810 - utils - INFO - 检索到0条相关文档
+2026-02-09 17:27:42,190 - utils - INFO - 嵌入模型初始化成功
+2026-02-09 17:27:42,216 - utils - INFO - 大模型初始化成功
+2026-02-09 17:27:42,219 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2026-02-09 17:27:42,236 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2026-02-09 17:27:42,284 - utils - INFO - FAISS 从本地加载成功
+2026-02-09 17:27:42,955 - httpx - INFO - HTTP Request: POST https://open.bigmodel.cn/api/paas/v4/embeddings "HTTP/1.1 200 OK"
+2026-02-09 17:27:42,968 - utils - INFO - 检索到0条相关文档
+2026-02-09 17:28:16,183 - utils - INFO - 嵌入模型初始化成功
+2026-02-09 17:28:16,213 - utils - INFO - 大模型初始化成功
+2026-02-09 17:28:16,215 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2026-02-09 17:28:16,231 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2026-02-09 17:28:16,238 - utils - INFO - FAISS 从本地加载成功
+2026-02-09 17:28:16,682 - utils - INFO - 加载PDF文档amazon_rules2.pdf，共5页
+2026-02-09 17:28:16,683 - utils - INFO - PDFamazon_rules2.pdf分块完成，共10个块
+2026-02-09 17:28:16,907 - httpx - INFO - HTTP Request: POST https://open.bigmodel.cn/api/paas/v4/embeddings "HTTP/1.1 200 OK"
+2026-02-09 17:28:17,050 - utils - INFO - 已入库10/10条文本块
+2026-02-09 17:28:17,052 - utils - INFO - 所有PDF知识库入库完成，总文本块数：10
+2026-02-09 17:28:17,369 - httpx - INFO - HTTP Request: POST https://open.bigmodel.cn/api/paas/v4/embeddings "HTTP/1.1 200 OK"
+2026-02-09 17:28:17,382 - utils - INFO - 检索到0条相关文档
+2026-02-09 18:14:18,383 - utils - INFO - 嵌入模型初始化成功
+2026-02-09 18:14:18,414 - utils - INFO - 大模型初始化成功
+2026-02-09 18:14:18,416 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2026-02-09 18:14:18,432 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2026-02-09 18:14:18,439 - utils - INFO - FAISS 从本地加载成功
+2026-02-09 18:14:18,918 - utils - INFO - 加载PDF文档amazon_rules2.pdf，共5页
+2026-02-09 18:14:18,919 - utils - INFO - PDFamazon_rules2.pdf分块完成，共10个块
+2026-02-09 18:14:19,308 - httpx - INFO - HTTP Request: POST https://open.bigmodel.cn/api/paas/v4/embeddings "HTTP/1.1 200 OK"
+2026-02-09 18:14:19,450 - utils - INFO - 已入库10/10条文本块
+2026-02-09 18:14:19,453 - utils - INFO - 所有PDF知识库入库完成，总文本块数：10
+2026-02-09 18:14:19,559 - httpx - INFO - HTTP Request: POST https://open.bigmodel.cn/api/paas/v4/embeddings "HTTP/1.1 200 OK"
+2026-02-09 18:14:19,581 - utils - INFO - 检索到3条相关文档
+2026-02-09 18:14:19,721 - httpx - INFO - HTTP Request: POST https://open.bigmodel.cn/api/paas/v4/embeddings "HTTP/1.1 200 OK"
+2026-02-09 18:14:22,253 - httpx - INFO - HTTP Request: POST https://open.bigmodel.cn/api/paas/v4/chat/completions "HTTP/1.1 200 OK"
+2026-02-09 18:14:22,255 - utils - INFO - 问答完成，用户问题：库存管理，回答：库存管理：卖家需合理管理FBA库存，避免库存积压或短缺，亚马逊将按相关规则处理滞销、过期库存，相关费...
+2026-02-09 18:17:12,746 - utils - INFO - 嵌入模型初始化成功
+2026-02-09 18:17:12,773 - utils - INFO - 大模型初始化成功
+2026-02-09 18:17:12,776 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2026-02-09 18:17:12,793 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2026-02-09 18:17:12,836 - utils - INFO - FAISS 从本地加载成功
+2026-02-09 18:17:13,111 - httpx - INFO - HTTP Request: POST https://open.bigmodel.cn/api/paas/v4/embeddings "HTTP/1.1 200 OK"
+2026-02-09 18:17:13,129 - utils - INFO - 检索到3条相关文档
+2026-02-09 18:17:13,259 - httpx - INFO - HTTP Request: POST https://open.bigmodel.cn/api/paas/v4/embeddings "HTTP/1.1 200 OK"
+2026-02-09 18:17:36,355 - httpx - INFO - HTTP Request: POST https://open.bigmodel.cn/api/paas/v4/chat/completions "HTTP/1.1 200 OK"
+2026-02-09 18:17:36,359 - utils - INFO - 问答完成，用户问题：亚马逊平台退货规则？，回答：亚马逊平台的退货规则如下：
+
+1. **退货时效要求**：
+   - 常规时效：买家可在收到商品后3...
+2026-02-09 18:19:48,287 - utils - INFO - 嵌入模型初始化成功
+2026-02-09 18:19:48,318 - utils - INFO - 大模型初始化成功
+2026-02-09 18:19:48,321 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2026-02-09 18:19:48,335 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2026-02-09 18:19:48,345 - utils - INFO - FAISS 从本地加载成功
+2026-02-09 18:19:48,670 - httpx - INFO - HTTP Request: POST https://open.bigmodel.cn/api/paas/v4/embeddings "HTTP/1.1 200 OK"
+2026-02-09 18:19:48,688 - utils - INFO - 检索到3条相关文档
+2026-02-09 18:19:48,815 - httpx - INFO - HTTP Request: POST https://open.bigmodel.cn/api/paas/v4/embeddings "HTTP/1.1 200 OK"
+2026-02-09 18:19:48,830 - utils - ERROR - 问答执行失败：'page'
+2026-02-09 18:20:14,687 - utils - INFO - 嵌入模型初始化成功
+2026-02-09 18:20:14,714 - utils - INFO - 大模型初始化成功
+2026-02-09 18:20:14,717 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2026-02-09 18:20:14,738 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2026-02-09 18:20:14,747 - utils - INFO - FAISS 从本地加载成功
+2026-02-09 18:20:14,912 - httpx - INFO - HTTP Request: POST https://open.bigmodel.cn/api/paas/v4/embeddings "HTTP/1.1 200 OK"
+2026-02-09 18:20:14,929 - utils - INFO - 检索到3条相关文档
+2026-02-09 18:20:15,058 - httpx - INFO - HTTP Request: POST https://open.bigmodel.cn/api/paas/v4/embeddings "HTTP/1.1 200 OK"
+2026-02-09 18:20:15,070 - utils - ERROR - 问答执行失败：'page'
+2026-02-10 11:45:44,362 - utils - INFO - 嵌入模型初始化成功
+2026-02-10 11:45:44,437 - utils - INFO - 大模型初始化成功
+2026-02-10 11:45:44,440 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2026-02-10 11:45:44,925 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2026-02-10 11:45:44,964 - utils - INFO - FAISS 从本地加载成功
+2026-02-10 11:47:08,844 - httpx - INFO - HTTP Request: POST https://open.bigmodel.cn/api/paas/v4/embeddings "HTTP/1.1 200 OK"
+2026-02-10 11:47:08,902 - utils - INFO - 检索到3条相关文档
+2026-02-10 11:47:09,053 - httpx - INFO - HTTP Request: POST https://open.bigmodel.cn/api/paas/v4/embeddings "HTTP/1.1 200 OK"
+2026-02-10 11:47:29,169 - httpx - INFO - HTTP Request: POST https://open.bigmodel.cn/api/paas/v4/chat/completions "HTTP/1.1 200 OK"
+2026-02-10 11:47:29,173 - utils - INFO - 问答完成，用户问题：亚马逊退货规则？，回答：亚马逊的退货规则如下：
+
+1. **退货时效要求**：
+   - 常规时效：买家在收到商品后30天内...
+2026-02-10 11:50:30,115 - utils - INFO - 嵌入模型初始化成功
+2026-02-10 11:50:30,145 - utils - INFO - 大模型初始化成功
+2026-02-10 11:50:30,148 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2026-02-10 11:50:30,166 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2026-02-10 11:50:30,174 - utils - INFO - FAISS 从本地加载成功
+2026-02-10 11:50:30,497 - httpx - INFO - HTTP Request: POST https://open.bigmodel.cn/api/paas/v4/embeddings "HTTP/1.1 200 OK"
+2026-02-10 11:50:30,510 - utils - INFO - 检索到3条相关文档
+2026-02-10 11:50:30,656 - httpx - INFO - HTTP Request: POST https://open.bigmodel.cn/api/paas/v4/embeddings "HTTP/1.1 200 OK"
+2026-02-10 11:50:41,999 - httpx - INFO - HTTP Request: POST https://open.bigmodel.cn/api/paas/v4/chat/completions "HTTP/1.1 200 OK"
+2026-02-10 11:50:42,002 - utils - INFO - 问答完成，用户问题：亚马逊FBA物流费用计算规则是什么？，回答：亚马逊FBA（Fulfillment by Amazon）物流费用计算基于货件的实际重量和尺寸。以下...
