@@ -14,13 +14,155 @@ from langchain_community.document_loaders import PyPDFLoader
 # 从langchain文本处理库导入递归字符分块器，实现中文文本的智能语义分块
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 # 从自定义工具类utils.py导入所有初始化函数和日志实例，复用已封装的组件
-from src.utils import init_embedding, init_llm, init_faiss, logger
+from utils import init_embedding, init_llm, init_faiss, logger
+import ctypes
+import numpy as np
+import ctypes
+import sys
+from typing import List
+from langchain_core.documents import Document
 
 # 项目启动时立即初始化所有核心组件，仅执行1次，供后续所有业务逻辑调用
 embedding = init_embedding()  # 初始化嵌入模型，用于文本/问题的向量化转换
 llm = init_llm()              # 初始化大模型，用于基于知识库生成问答结果
 # 初始化FAISS向量库，传入嵌入模型保证向量维度一致，返回向量库实例+本地持久化路径
 vector_db, persist_dir = init_faiss(embedding)
+# 加载C相似度计算库
+def load_c_similarity_lib():
+    try:
+        if sys.platform == "win32":
+            lib = ctypes.CDLL("src/similarity.dll")  # 注意路径：如果在项目根目录运行，这里是根目录下的dll
+        else:
+            lib = ctypes.CDLL("src/similarity.so")
+        
+        # 定义C函数参数和返回值
+        lib.calc_similarity.argtypes = [
+            ctypes.POINTER(ctypes.c_float),  # vec1
+            ctypes.POINTER(ctypes.c_float),  # vec2
+            ctypes.c_int                     # len
+        ]
+        lib.calc_similarity.restype = ctypes.c_float
+        return lib
+    except Exception as e:
+        logger.error(f"加载C相似度库失败：{str(e)}，降级使用Python计算")
+        return None
+
+# 初始化C相似度库
+c_sim_lib = load_c_similarity_lib()
+
+def c_cosine_similarity(vec1, vec2):
+    """调用C语言余弦相似度计算，降级兼容Python实现"""
+    if not c_sim_lib:
+        # Python实现的余弦相似度（降级方案）
+        vec1 = np.array(vec1)
+        vec2 = np.array(vec2)
+        return np.dot(vec1, vec2) / (np.linalg.norm(vec1) * np.linalg.norm(vec2)) * 1.2
+    
+    # 转换为C数组
+    vec1_c = (ctypes.c_float * len(vec1))(*vec1)
+    vec2_c = (ctypes.c_float * len(vec2))(*vec2)
+    # 调用C函数
+    return c_sim_lib.calc_similarity(vec1_c, vec2_c, len(vec1))
+
+# 加载C动态库
+lib = ctypes.CDLL("src/similarity.dll")
+lib.calc_similarity.argtypes = [ctypes.POINTER(ctypes.c_float), ctypes.POINTER(ctypes.c_float), ctypes.c_int]
+lib.calc_similarity.restype = ctypes.c_float
+def load_c_text_splitter():
+    """加载C语言实现的文本分块动态库"""
+    try:
+        if sys.platform == "win32":
+            # Windows加载dll
+            lib = ctypes.CDLL("src/text_splitter.dll")
+        else:
+            # Linux/Mac加载so
+            lib = ctypes.CDLL("src/text_splitter.so")
+        
+        # 定义函数参数和返回值类型
+        # split_chinese_text函数：(const char*, int, int, char***, int*) -> void
+        lib.split_chinese_text.argtypes = [
+            ctypes.c_char_p,  # text（字节串）
+            ctypes.c_int,     # chunk_size
+            ctypes.c_int,     # overlap
+            ctypes.POINTER(ctypes.POINTER(ctypes.c_char_p)),  # out_chunks
+            ctypes.POINTER(ctypes.c_int)  # out_count
+        ]
+        lib.split_chinese_text.restype = None
+
+        # free_chunks函数：(char**, int) -> void
+        lib.free_chunks.argtypes = [
+            ctypes.POINTER(ctypes.c_char_p),
+            ctypes.c_int
+        ]
+        lib.free_chunks.restype = None
+
+        return lib
+    except Exception as e:
+        logger.error(f"加载C语言分块库失败：{str(e)}，降级使用Python分块器")
+        return None
+
+# 初始化C分块库
+c_splitter_lib = load_c_text_splitter()
+
+def c_text_splitter(documents: List[Document], chunk_size=500, chunk_overlap=50) -> List[Document]:
+    """
+    调用C语言分块器处理Document列表（替换RecursiveCharacterTextSplitter）
+    :param documents: PDF加载后的Document列表
+    :param chunk_size: 块最大字符数
+    :param chunk_overlap: 重叠字符数
+    :return: 分块后的Document列表
+    """
+    # 如果C库加载失败，降级使用Python的分块器
+    if not c_splitter_lib:
+        text_splitter = RecursiveCharacterTextSplitter(
+            chunk_size=chunk_size,
+            chunk_overlap=chunk_overlap,
+            separators=["\n\n", "\n", "。", "！", "？", "，", "、"]
+        )
+        return text_splitter.split_documents(documents)
+    
+    split_docs = []
+    for doc in documents:
+        # 1. 提取文本并转为C语言字节串（明确用UTF-8编码）
+        text = doc.page_content.encode("utf-8")
+        # 2. 定义输出变量
+        out_chunks = ctypes.POINTER(ctypes.c_char_p)()
+        out_count = ctypes.c_int(0)
+        # 3. 调用C分块函数
+        c_splitter_lib.split_chinese_text(
+            text,
+            ctypes.c_int(chunk_size),
+            ctypes.c_int(chunk_overlap),
+            ctypes.byref(out_chunks),
+            ctypes.byref(out_count)
+        )
+        # 4. 解析分块结果，封装为Document（核心修复：适配编码）
+        count = out_count.value
+        for i in range(count):
+            # 读取C返回的字节串
+            chunk_bytes = out_chunks[i]
+            if not chunk_bytes:
+                continue
+            # 修复编码问题：优先GBK解码（Windows默认），失败则UTF-8，再失败则忽略错误
+            try:
+                chunk_text = chunk_bytes.decode("gbk")  # 适配Windows中文编码
+            except UnicodeDecodeError:
+                try:
+                    chunk_text = chunk_bytes.decode("utf-8")  # 降级为UTF-8
+                except UnicodeDecodeError:
+                    chunk_text = chunk_bytes.decode("utf-8", errors="ignore")  # 忽略无法解码的字符
+            
+            if chunk_text.strip():  # 过滤空块
+                new_doc = Document(
+                    page_content=chunk_text,
+                    metadata={**doc.metadata}  # 继承原文档的元数据（页码、PDF路径等）
+                )
+                split_docs.append(new_doc)
+        # 5. 释放C语言分配的内存（避免内存泄漏）
+        c_splitter_lib.free_chunks(out_chunks, out_count)
+    
+    logger.info(f"C语言分块完成，总块数：{len(split_docs)}")
+    return split_docs
 
 # 初始化文本分块器，RAG核心优化点之一：解决长文本检索精度低、语义割裂问题
 # 让文本分块更贴合中文语义，为后续精准检索打下基础
@@ -50,7 +192,9 @@ def load_knowledge(pdf_paths):
         documents = loader.load()#加载文字
         logger.info(f"加载PDF文档{pdf_path}，共{len(documents)}页")
         # 文本分块
-        splits = text_splitter.split_documents(documents)
+        # splits = text_splitter.split_documents(documents)
+        # 调用C语言实现的分块函数（替换Python分块器）
+        splits = c_text_splitter(documents, chunk_size=500, chunk_overlap=50)
         logger.info(f"PDF{pdf_path}分块完成，共{len(splits)}个块")
         all_splits.extend(splits)  # 将当前PDF的文本块加入总列表
     
@@ -86,26 +230,46 @@ def format_docs(docs):
 
 # 定义核心RAG问答函数：实现用户问题→向量检索→上下文拼接→大模型生成→结果返回的完整问答流程
 # 每次用户提问都会执行，调用/qa接口时触发，参数query为用户的自然语言问题
-def rag_qa(query):
-    """核心RAG问答逻辑"""
-    # 1. 初始化FAISS检索器，将向量库转换为检索器模式，配置检索规则
-    retriever = vector_db.as_retriever(
-        # 检索规则配置：k=3表示召回最相关的3个文本块，score_threshold=0.7表示仅保留相似度≥70%的结果
-        # 过滤低相关结果，提升大模型回答的准确性，减少幻觉
-        # search_kwargs={"k": 3, "score_threshold": 0.7}
-        # search_kwargs={"k": 3}#强制返回最相似的 3 条
-        search_type="mmr", #相关内容分散，可改用最大边际相关性（MMR）检索，兼顾相关性和多样性
-        search_kwargs={"k": 3, "fetch_k": 10}#fetch_k“候选池大小”，k“最终输出数量”
-    )
-    # 执行相似性检索：将用户问题自动向量化后，在FAISS中检索相关文本块，返回结果列表
+# def rag_qa(query):
+#     """核心RAG问答逻辑"""
+#     # 1. 初始化FAISS检索器，将向量库转换为检索器模式，配置检索规则
+#     retriever = vector_db.as_retriever(
+#         # 检索规则配置：k=3表示召回最相关的3个文本块，score_threshold=0.7表示仅保留相似度≥70%的结果
+#         # 过滤低相关结果，提升大模型回答的准确性，减少幻觉
+#         # search_kwargs={"k": 3, "score_threshold": 0.7}
+#         # search_kwargs={"k": 3}#强制返回最相似的 3 条
+#         search_type="mmr", #相关内容分散，可改用最大边际相关性（MMR）检索，兼顾相关性和多样性
+#         search_kwargs={"k": 3, "fetch_k": 10}#fetch_k“候选池大小”，k“最终输出数量”
+#     )
+# 执行相似性检索：将用户问题自动向量化后，在FAISS中检索相关文本块，返回结果列表
     # docs = retriever.get_relevant_documents(query)//get_relevant_documents已经弃用
-    docs = retriever.invoke(query)
-    # 记录日志，告知本次检索到的相关文本块数量，方便后续优化检索规则
-    logger.info(f"检索到{len(docs)}条相关文档")
+    # docs = retriever.invoke(query)
+    # # 记录日志，告知本次检索到的相关文本块数量，方便后续优化检索规则
+    # logger.info(f"检索到{len(docs)}条相关文档")
     
-    # 若未检索到任何相关文本块，直接返回提示语，避免大模型基于通用知识编造答案
+    # # 若未检索到任何相关文本块，直接返回提示语，避免大模型基于通用知识编造答案
+    # if not docs:
+    #     return "未检索到相关信息，请确认问题是否准确。"
+# 在rag_qa函数中替换FAISS默认检索：用C的相似度算法筛选结果
+def rag_qa(query):
+    # 1. 先用FAISS检索候选（fetch_k=20）
+    retriever = vector_db.as_retriever(search_kwargs={"k": 20})
+    docs = retriever.invoke(query)
     if not docs:
-        return "未检索到相关信息，请确认问题是否准确。"
+        return "未检索到相关信息"
+    
+    # 2. 用C语言的相似度算法重新排序（电商场景优化）
+    query_vec = embedding.embed_query(query)  # 获取问题向量
+    doc_scores = []
+    for doc in docs:
+        doc_vec = embedding.embed_query(doc.page_content)
+        # 调用C函数计算相似度
+        score = c_cosine_similarity(query_vec, doc_vec)
+        doc_scores.append((doc, score))
+    
+    # 3. 取Top3高分文档
+    doc_scores.sort(key=lambda x: x[1], reverse=True)
+    top_docs = [d[0] for d in doc_scores[:3]]
     
     # 2. 构建大模型提示词模板，Prompt工程核心：明确大模型的角色和回答规则，抑制幻觉
     prompt = ChatPromptTemplate.from_template("""
@@ -148,7 +312,7 @@ def rag_qa(query):
 # 用于本地调试，无需启动API服务即可测试知识库加载和问答功能
 if __name__ == "__main__":
     # 第一步：加载知识库（首次运行时取消注释执行1次，加载完成后重新注释，避免重复入库）
-    # load_knowledge("amazon_rules2.pdf")
+    # load_knowledge("data/raw/amazon_rules2.pdf")
     
     # 第二步：测试核心问答功能，定义测试问题
     test_query = "亚马逊FBA物流费用计算规则是什么？"
